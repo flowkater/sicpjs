@@ -3,8 +3,59 @@
 <script>
   // const factorial = n => n === 1 ? 1 : n * factorial(n - 1);
 
-  const fact_iter = (product, counter, max_count) => counter > max_count ? product : fact_iter(counter * product, counter + 1, max_count);
+  const fact_iter = (product, counter, max_count) => counter > max_count 
+                                                      ? product 
+                                                      : fact_iter(counter * product, counter + 1, max_count);
   const factorial = (n) => fact_iter(1, 1, n);
 
   log(factorial(3));
+
+  // Ackermann's function
+  const A = (x, y) => y === 0 
+                      ? 0
+                      : x === 0
+                      ? 2 * y
+                      : y === 1
+                      ? 2
+                      : A(x - 1, A(x, y - 1));
+  
+  log(A(1, 10)); // 1024 - 2^10
+  log(A(2, 4)); // 65536 - 2^16
+  log(Math.pow(2, 27));
+  log(A(3, 3)); // 65536
+
+  const f = n => A(0, n); // 2n
+  log(f(2));
+  log(f(4));
+  log(f(5));
+  log(f(10));
+
+  const g = n => A(1, n); // 2^n
+  log(g(2));
+  log(g(4));
+  log(g(5));
+  log(g(10));
+
+  const h = n => A(2, n); // 2^(2^(2^2...) 2s => n 개 만큼
+  log(h(2));
+  log(h(4));
+
+  const fib_recursive = n => n === 0
+                            ? 0
+                            : n === 1
+                            ? 1
+                            : fib_recursive(n - 1) + fib_recursive(n - 2);
+
+  // log("-----fib_recursive------");
+  // log(fib_recursive(100));
+  
+  const fib_iterative = n => fib_iter(1, 0, n)
+  const fib_iter = (a, b, count) => count === 0 
+                                    ? b
+                                    : fib_iter(a + b, a, count - 1);
+
+  log("-----fib_iterative------");
+  log(fib_iterative(100));
+  log(fib_iterative(10));                                  
+  
 </script>
