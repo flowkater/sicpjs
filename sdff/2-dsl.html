@@ -1,0 +1,19 @@
+<script>
+    function iterate(n, f) {
+        if (n === 0) {
+            return function (x) {
+                console.log(x)
+                return x;
+            };
+        } else {
+            return function (x) {
+                console.log(`f(iterate(${n - 1},${f})(${x}))`);
+                return f(iterate(n - 1, f)(x));
+            };
+        }
+    }
+
+    square(iterate(2, (x) => x * x)(5)) // square(626) => 390625
+    square(iterate(1, (x) => x * x)(5)) // square(25) => 625
+    square(iterate(0, (x) => x * x)(5)) // square(5) => 25
+</script>
