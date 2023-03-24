@@ -56,6 +56,50 @@
 
   log("-----fib_iterative------");
   log(fib_iterative(100));
-  log(fib_iterative(10));                                  
+  log(fib_iterative(10));
+  
+  // count change
+  const count_change = amount => cc(amount, 5);
+
+  const cc = (amount, kinds_of_coins) => amount === 0
+                                        ? 1
+                                        : amount < 0 || kinds_of_coins === 0
+                                        ? 0
+                                        : cc(amount, kinds_of_coins - 1) + cc(amount - first_denomination(kinds_of_coins), kinds_of_coins);
+
+  const first_denomination = kinds_of_coins => kinds_of_coins === 1
+                                              ? 1
+                                              : kinds_of_coins === 2
+                                              ? 5
+                                              : kinds_of_coins === 3
+                                              ? 10
+                                              : kinds_of_coins === 4
+                                              ? 25
+                                              : kinds_of_coins === 5
+                                              ? 50
+                                              : 0;
+
+  console.log(count_change(100));
+  console.log(count_change(25));
+
+  // 1.11
+
+  const fn_recursive = (n) => n < 3
+                  ? n
+                  : fn_recursive(n - 1) + 2 * fn_recursive(n - 2) + 3 * fn_recursive(n - 3);
+
+  const fn_iterative = (n) => {
+    const iter = (a, b, c, count) => count === 0
+                                    ? a
+                                    : iter(a + 2 * b + 3 * c, a, b, count - 1);
+    return iter(2, 1, 0, n - 2);
+  }
+  
+  // 1.12
+
+  const pascal = (row, col) => col === 0 || col === row
+                              ? 1
+                              : pascal(row - 1, col - 1) + pascal(row - 1, col);
+
   
 </script>
